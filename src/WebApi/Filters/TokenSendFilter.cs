@@ -1,7 +1,6 @@
 namespace WebApi.Filters
 {
     using System.Threading.Tasks;
-    using GreenPipes;
     using MassTransit;
 
 

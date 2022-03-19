@@ -1,7 +1,6 @@
 namespace WebApi
 {
     using Consumers;
-    using Contracts;
     using Filters;
     using MassTransit;
     using Microsoft.AspNetCore.Builder;
@@ -36,10 +35,7 @@ namespace WebApi
 
                     cfg.ConfigureEndpoints(context);
                 });
-
-                x.AddRequestClient<CheckInventory>();
             });
-            services.AddMassTransitHostedService();
 
             services.AddScoped<Token>();
             services.AddScoped<TokenActionFilter>();
