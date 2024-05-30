@@ -33,16 +33,15 @@ namespace WebApi
                     cfg.UsePublishFilter(typeof(TokenPublishFilter<>), context);
                     cfg.UseConsumeFilter(typeof(TokenConsumeFilter<>), context);
 
+                    cfg.UsePublishFilter<TokenPublishMessageFilter>(context);
+
                     cfg.ConfigureEndpoints(context);
                 });
             });
 
             services.AddScoped<Token>();
             services.AddScoped<TokenActionFilter>();
-            services.AddControllers(options =>
-            {
-                options.Filters.Add(typeof(TokenActionFilter));
-            });
+            services.AddControllers(options => { options.Filters.Add(typeof(TokenActionFilter)); });
 
             services.AddSwaggerGen(c =>
             {
@@ -70,10 +69,7 @@ namespace WebApi
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
